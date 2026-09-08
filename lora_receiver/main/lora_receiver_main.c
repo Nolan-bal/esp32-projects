@@ -140,7 +140,7 @@ static esp_err_t lora_transmit_test(void)
     ESP_RETURN_ON_ERROR(lora_command(LR1121_CMD_SET_TX, tx_timeout,
                                      sizeof(tx_timeout), NULL, 0),
                         "lr1121", "TX start failed");
-    printf("[LoRa] E80 emission: %s\n", message);
+    printf("[LoRa] E80 transmission: %s\n", message);
     fflush(stdout);
     vTaskDelay(pdMS_TO_TICKS(700));
     return lora_command(LR1121_CMD_SET_RX, (const uint8_t[]){0xFF, 0xFF, 0xFF}, 3,
@@ -262,10 +262,10 @@ static void lora_receive_task(void *argument)
         uint32_t irq = 0;
         if (gpio_get_level(LORA_DIO1_GPIO) != 0) {
             if (lora_get_irq_status(&irq) != ESP_OK) {
-                printf("[LoRa] erreur lecture IRQ\n");
+                printf("[LoRa] IRQ read error\n");
                 fflush(stdout);
             } else if ((irq & LR1121_IRQ_RX_DONE) == 0) {
-                printf("[LoRa] DIO1 actif, IRQ=0x%08" PRIx32 "\n", irq);
+                printf("[LoRa] DIO1 active, IRQ=0x%08" PRIx32 "\n", irq);
                 fflush(stdout);
             }
         }
@@ -293,19 +293,19 @@ static void lora_receive_task(void *argument)
 
 void app_main(void)
 {
-    printf("Demarrage du recepteur LR1121...\n");
+    printf("Starting LR1121 receiver...\n");
     fflush(stdout);
     ESP_ERROR_CHECK(lora_init());
-    printf("SPI LR1121 initialise\n");
+    printf("LR1121 SPI initialized\n");
     uint8_t version[4] = {0};
     ESP_ERROR_CHECK(lora_command(LR1121_CMD_GET_VERSION, NULL, 0, version, sizeof(version)));
-    printf("LR1121 detecte: hw=%u device=%u firmware=%u.%u\n",
+    printf("LR1121 detected: hw=%u device=%u firmware=%u.%u\n",
            version[0], version[1], version[2], version[3]);
 
     const uint8_t receive_timeout[] = {0xFF, 0xFF, 0xFF};
     ESP_ERROR_CHECK(lora_command(LR1121_CMD_SET_RX, receive_timeout,
                                  sizeof(receive_timeout), NULL, 0));
-    printf("Reception LR1121 active\n");
+    printf("LR1121 reception active\n");
     fflush(stdout);
     xTaskCreate(lora_receive_task, "lora_receive_task", 4096, NULL, 5, NULL);
 }

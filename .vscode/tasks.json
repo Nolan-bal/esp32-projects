@@ -1,0 +1,79 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Hello World: build",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/run-idf.sh",
+            "args": [
+                "-B",
+                "build",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/hello_world"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Hello World: flash and monitor",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/run-idf.sh",
+            "args": [
+                "-B",
+                "build",
+                "-p",
+                "${input:serialPort}",
+                "flash",
+                "monitor"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/hello_world"
+            },
+            "problemMatcher": [],
+            "dependsOn": "Hello World: build",
+            "dependsOrder": "sequence"
+        },
+        {
+            "label": "LoRa receiver: build",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/run-idf.sh",
+            "args": [
+                "-B",
+                "build",
+                "build"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lora_receiver"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "LoRa receiver: flash and monitor",
+            "type": "shell",
+            "command": "${workspaceFolder}/.vscode/run-idf.sh",
+            "args": [
+                "-B",
+                "build",
+                "-p",
+                "${input:serialPort}",
+                "flash",
+                "monitor"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/lora_receiver"
+            },
+            "problemMatcher": [],
+            "dependsOn": "LoRa receiver: build",
+            "dependsOrder": "sequence"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "serialPort",
+            "type": "promptString",
+            "description": "ESP32 serial port",
+            "default": "/dev/tty.usbserial-1130"
+        }
+    ]
+}

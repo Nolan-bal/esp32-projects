@@ -1,34 +1,36 @@
 # LoRa receiver
 
-Projet ESP-IDF indépendant pour recevoir des paquets LoRa avec le LR1121 de la carte EoRa-HUB-900TB et les afficher dans la console série.
+Standalone ESP-IDF project for receiving LoRa packets with the LR1121 on the
+EoRa-HUB-900TB board and displaying them in the serial console.
 
-## Parametres
+## Parameters
 
-- Cible : ESP32-S3
-- Frequence : 915 MHz
-- Bande passante LoRa : 125 kHz
+- Target: ESP32-S3
+- Frequency: 915 MHz
+- LoRa bandwidth: 125 kHz
 - Spreading factor : 7
-- Coding rate : 4/
-- Reception : continue
+- Coding rate: 4/
+- Reception: continuous
 
-Les broches radio sont definies au debut de `main/lora_receiver_main.c`.
+The radio pins are defined at the top of `main/lora_receiver_main.c`.
 
-## Compiler et flasher
+## Build and flash
 
-Depuis un terminal ESP-IDF :
+From an ESP-IDF terminal:
 
 ```sh
-cd /Users/nolanbailliet/Documents/esp32-projects/lora_receiver
+cd lora_receiver
 idf.py -B build build
-idf.py -B build -p /dev/tty.usbserial-1140 flash monitor
+idf.py -B build -p PORT flash monitor
 ```
 
-Quitter le moniteur avec `Ctrl-]`.
+Exit the monitor with `Ctrl-]`.
 
-Chaque paquet recu apparait sous la forme :
+Each received packet is displayed as:
 
 ```text
-[LoRa] paquet recu: longueur=5 RSSI=-72 dBm SNR=8 dB | hello
+[LoRa] packet received: length=5 RSSI=-72 dBm SNR=8 dB | hello
 ```
 
-L'emetteur doit utiliser les memes frequence, bande passante, spreading factor, coding rate et longueur d'en-tete implicite/explicite.
+The transmitter must use the same frequency, bandwidth, spreading factor,
+coding rate, and implicit/explicit header length.

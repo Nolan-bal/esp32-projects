@@ -23,14 +23,12 @@
     "board/esp32-wrover-kit-3.3v.cfg"
   ],
   "idf.port": "detect",
-  "idf.currentSetup": "/Users/nolanbailliet/.espressif/v6.0.2/esp-idf",
   "idf.customExtraVars": {
     "IDF_TARGET": "esp32"
   },
-  "clangd.path": "/Users/nolanbailliet/.espressif/tools/esp-clang/esp-20.1.1_20250829/esp-clang/bin/clangd",
   "clangd.arguments": [
     "--background-index",
     "--query-driver=**",
-    "--compile-commands-dir=/Users/nolanbailliet/Documents/esp32-projects/hello_world/build"
+    "--compile-commands-dir=${workspaceFolder}/hello_world/build"
   ]
 }

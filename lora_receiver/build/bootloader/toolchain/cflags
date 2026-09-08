@@ -1,5 +1,0 @@
-"-specs=/Users/nolanbailliet/Documents/esp32-projects/lora_receiver/build/bootloader/specs/picolibc.specs"
--mlongcalls
--fno-builtin-memcpy
--fno-builtin-memset
--fno-builtin-bzero
