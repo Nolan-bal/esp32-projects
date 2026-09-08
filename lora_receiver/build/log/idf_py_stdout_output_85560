@@ -1,0 +1,60 @@
+Command: /Users/nolanbailliet/.espressif/python_env/idf6.0_py3.14_env/bin/python /Users/nolanbailliet/.espressif/v6.0.2/esp-idf/tools/idf_monitor.py -p /dev/tty.usbserial-1130 -b 115200 --toolchain-prefix xtensa-esp32s3-elf- --target esp32s3 --revision 0 /Users/nolanbailliet/Documents/esp32-projects/lora_receiver/build/lora_receiver.elf /Users/nolanbailliet/Documents/esp32-projects/lora_receiver/build/bootloader/bootloader.elf -m '/Users/nolanbailliet/.espressif/python_env/idf6.0_py3.14_env/bin/python' '/Users/nolanbailliet/.espressif/v6.0.2/esp-idf/tools/idf.py' '-B'
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2820,len:0x14f0
+load:0x403c8700,len:0xda0
+load:0x403cb700,len:0x2f54
+entry 0x403c8908
+[0;32mI (24) boot: ESP-IDF v6.0.2 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Aug 20 2026 11:06:50[0m
+[0;32mI (25) boot: Multicore bootloader[0m
+[0;32mI (25) boot: chip revision: v0.2[0m
+[0;32mI (28) boot: efuse block revision: v1.3[0m
+[0;32mI (31) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (35) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (39) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (43) boot: Enabling RNG early entropy source...[0m
+[0;32mI (47) boot: Partition Table:[0m
+[0;32mI (50) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (56) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (63) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (69) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (76) boot: End of partition table[0m
+[0;32mI (79) esp_image: segment 0: paddr=00010020 vaddr=3c020020 size=09b74h ( 39796) map[0m
+[0;32mI (94) esp_image: segment 1: paddr=00019b9c vaddr=3fc92600 size=02fb8h ( 12216) load[0m
+[0;32mI (97) esp_image: segment 2: paddr=0001cb5c vaddr=40374000 size=034bch ( 13500) load[0m
+[0;32mI (104) esp_image: segment 3: paddr=00020020 vaddr=42000020 size=1391ch ( 80156) map[0m
+[0;32mI (123) esp_image: segment 4: paddr=00033944 vaddr=403774bc size=0b064h ( 45156) load[0m
+[0;32mI (134) esp_image: segment 5: paddr=0003e9b0 vaddr=50000000 size=00024h (    36) load[0m
+[0;32mI (140) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (140) boot: Disabling RNG early entropy source...[0m
+[0;32mI (152) cpu_start: Multicore app[0m
+[0;32mI (160) cpu_start: GPIO 44 and 43 are used as console UART I/O pins[0m
+[0;32mI (161) cpu_start: Pro cpu start user code[0m
+[0;32mI (161) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (162) app_init: Application information:[0m
+[0;32mI (166) app_init: Project name:     lora_receiver[0m
+[0;32mI (171) app_init: App version:      1[0m
+[0;32mI (174) app_init: Compile time:     Aug 20 2026 11:06:48[0m
+[0;32mI (179) app_init: ELF file SHA256:  1618180d9...[0m
+[0;32mI (183) app_init: ESP-IDF:          v6.0.2[0m
+[0;32mI (187) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (191) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (195) efuse_init: Chip rev:         v0.2[0m
+[0;32mI (199) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (205) heap_init: At 3FC95F40 len 000537D0 (333 KiB): RAM[0m
+[0;32mI (210) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (215) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (221) heap_init: At 600FE000 len 00001FE8 (7 KiB): RTCRAM[0m
+[0;32mI (227) spi_flash: detected chip: generic[0m
+[0;32mI (230) spi_flash: flash io: dio[0m
+[0;33mW (233) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (245) sleep_gpio: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (251) sleep_gpio: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (258) main_task: Started on CPU0[0m
+[0;32mI (258) main_task: Calling app_main()[0m
+[0;32mI (278) lora_receiver: LR1121 status: 0xFF 0x00[0m
+[0;32mI (278) lora_receiver: Reception LoRa activee sur 915000000 Hz[0m

@@ -1,0 +1,12 @@
+Command: ninja flash
+[1;31m
+A fatal error occurred: Could not open /dev/tty.usbserial-1140, the port is busy or doesn't exist.
+([Errno 16] could not open port /dev/tty.usbserial-1140: [Errno 16] Resource busy: '/dev/tty.usbserial-1140')
+[0m
+[31mCMake Error at /Users/nolanbailliet/.espressif/v6.0.2/esp-idf/components/esptool_py/run_serial_tool.cmake:67 (message):
+  
+  /Users/nolanbailliet/.espressif/python_env/idf6.0_py3.14_env/bin/python;-m;esptool;--chip;esp32s3
+  failed.
+
+
+[0m

@@ -1,0 +1,2 @@
+source /Users/nolanbailliet/Documents/esp32-projects/lora_receiver/build/bootloader/gdbinit/symbols
+source /Users/nolanbailliet/Documents/esp32-projects/lora_receiver/build/bootloader/gdbinit/connect
