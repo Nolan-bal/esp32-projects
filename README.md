@@ -1,5 +1,76 @@
 # esp32-projects
 
+This repository contains the current ESP32-S3 experiments for a LoRa link and
+an OLED display. It includes two ESP-IDF applications, an Arduino transmitter,
+and a Wokwi simulation configuration.
+
+## Repository contents
+
+### `hello_world`
+
+This ESP-IDF application is an OLED bring-up test. It configures an SSD1306-
+compatible display on I2C, using SDA on GPIO18, SCL on GPIO17, reset on GPIO21,
+and address `0x3C`. It initializes the display, clears the framebuffer, draws
+`HELLO` and `ESP32-S3` with a small built-in 5x7 font, refreshes all eight OLED
+pages, and then remains alive in a FreeRTOS task loop.
+
+The display test currently confirms the basic I2C and OLED initialization path;
+it is separate from the LoRa receiver application.
+
+### `lora_receiver`
+
+This is the main ESP-IDF application for the LR1121 radio on the EoRa-HUB-
+900TB board. The ESP32-S3 communicates with the radio over SPI2 using:
+
+- SCK: GPIO9
+- MOSI: GPIO10
+- MISO: GPIO11
+- NSS: GPIO8
+- BUSY: GPIO13
+- DIO1: GPIO14
+- RESET: GPIO12
+
+The firmware resets the LR1121, waits for the BUSY signal, selects LoRa packet
+mode, configures the radio, and starts continuous reception. It polls DIO1,
+reads the IRQ status, retrieves received data from the LR1121 buffer, filters
+non-printable payloads, and prints text packets to the serial console.
+
+The current radio configuration is 868.125 MHz, bandwidth 125 kHz, spreading
+factor 9, coding rate 4/5, a 12-symbol preamble, a `0x1212` sync word, and a
+maximum payload of 255 bytes. A local E80 transmission test is currently
+enabled and sends `E80_TEST` every five seconds before returning to receive
+mode. See [lora_receiver/README.md](lora_receiver/README.md) for the detailed
+status and open validation points.
+
+### `e220_transmitter.ino`
+
+This Arduino sketch drives an E220 module through `SoftwareSerial` on RX GPIO2
+and TX GPIO3. It opens the USB serial console at 9600 baud, opens the E220 link
+at 9600 baud, and sends `HELLO` every five seconds. It is a simple external
+transmitter used to validate the radio link; its radio configuration must match
+the LR1121 settings.
+
+### Wokwi simulation
+
+`diagram.json` contains a minimal ESP32-S3 board connected to the Wokwi serial
+monitor. `wokwi.toml` points Wokwi to the `hello_world` firmware artifacts after
+the project has been built locally.
+
+## Current progress
+
+The repository currently provides:
+
+- A compiling ESP-IDF OLED test application.
+- A compiling ESP-IDF LR1121 receiver with SPI, reset, BUSY, DIO1, RX buffer,
+   IRQ handling, and serial diagnostics implemented.
+- A basic Arduino E220 transmitter that sends periodic test messages.
+- VS Code tasks for building, flashing, and monitoring both ESP-IDF projects.
+- A portable ESP-IDF launcher that detects a local installation through
+   `IDF_PATH` or the standard `~/.espressif` location.
+
+Hardware interoperability, final radio parameter confirmation, RSSI/SNR
+reporting, and automated hardware tests remain to be completed.
+
 ## Requirements
 
 - ESP-IDF installed and configured on the test machine

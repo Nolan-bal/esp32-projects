@@ -73,7 +73,7 @@
             "id": "serialPort",
             "type": "promptString",
             "description": "ESP32 serial port",
-            "default": "/dev/tty.usbserial-1130"
+            "default": ""
         }
     ]
 }

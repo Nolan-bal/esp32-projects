@@ -28,7 +28,6 @@
   },
   "clangd.arguments": [
     "--background-index",
-    "--query-driver=**",
-    "--compile-commands-dir=${workspaceFolder}/hello_world/build"
+    "--query-driver=**"
   ]
 }
